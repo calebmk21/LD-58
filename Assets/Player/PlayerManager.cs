@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Update()
     {
-        direction = 
+        direction = PlayerCharacter.transform.position;
     }
 
     public void UpdateAttackState(PlayerAttackMode newMode)

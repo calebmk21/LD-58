@@ -1340,9 +1340,10 @@ MonoBehaviour:
   ultimate: 0
   PlayerCharacter: {fileID: 1676070}
   ProjectileSpawningRegion: {fileID: 228657446}
-  SwordHitbox: {fileID: 0}
+  SwordHitbox: {fileID: 1434425972}
+  direction: {x: 0, y: 0, z: 0}
   fireballPrefab: {fileID: 2096507715}
-  fireballSpeed: 1
+  fireballSpeed: 10
 --- !u!1 &2003735966
 GameObject:
   m_ObjectHideFlags: 0
