@@ -17,8 +17,13 @@ public class PlayerManager : MonoBehaviour
     public PlayerAttackMode attackMode;
     public Spell spell;
     public Ultimate ultimate;
+    
+    // Character Model and Hitboxes
     public GameObject PlayerCharacter;
     public GameObject ProjectileSpawningRegion;
+    public GameObject SwordHitbox;
+
+    public Vector3 direction;
     void Awake()
     {
         Instance = this;
@@ -26,9 +31,14 @@ public class PlayerManager : MonoBehaviour
 
     public void Start()
     {
-        attackMode = PlayerAttackMode.Magic;
+        attackMode = PlayerAttackMode.Sword;
         spell = Spell.Fireball;
         ultimate = Ultimate.Inferno;
+    }
+
+    public void Update()
+    {
+        direction = 
     }
 
     public void UpdateAttackState(PlayerAttackMode newMode)
@@ -79,7 +89,7 @@ public class PlayerManager : MonoBehaviour
         GameObject fireball = Instantiate(fireballPrefab, transform) as GameObject;
         Rigidbody rb = fireball.GetComponent<Rigidbody>();
         rb.position = ProjectileSpawningRegion.transform.position;
-        rb.linearVelocity = transform.forward * fireballSpeed;
+        rb.linearVelocity = direction * fireballSpeed;
         Debug.Log("Fireball");
     }
     public void MagicMissile()
