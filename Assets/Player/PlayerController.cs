@@ -1,17 +1,22 @@
 using System;
 using UnityEditor;
+using UnityEditor.Searcher;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private CharacterController _controller;
-
+    
     // basic movement floats
     public float moveSpeed = 10f, lookSpeed = 7f, jumpPower = 5f, gravityForce = -10f;
     public float verticalVelocity;
     public float rotY;
-
+    
+    // interactions
     public bool isSprinting = false, isGrounded = true;
+    public bool canInteract, isTriggerAnItem;
+    
+    
     void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -23,14 +28,18 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.forward * movement.y + transform.right * movement.x;
         move *= moveSpeed * Time.deltaTime;
         _controller.Move(move);
-        verticalVelocity += gravityForce * Time.deltaTime;
-        Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
-        _controller.Move(jumpVec);
 
-        if (isGrounded)
+        if (!isGrounded)
         {
-            verticalVelocity = 0f;
+            verticalVelocity += gravityForce * Time.deltaTime;
+            Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
+            _controller.Move(jumpVec);
         }
+
+        // if (isGrounded)
+        // {
+        //     verticalVelocity = 0f;
+        // }
     }
 
     public void Look(Vector2 looking)
@@ -68,6 +77,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Interact()
+    {
+        if (canInteract)
+        {
+            Debug.Log("Interacted!");
+        }
+        else if (isTriggerAnItem)
+        {
+            
+        }
+    }
+
     public void OnCollisionEnter(Collision other)
     {
         
@@ -77,6 +98,48 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             verticalVelocity = 0f;
+        }
+    }
+
+    public void OnCollisionExit(Collision other)
+    {
+        
+        Debug.Log("Entered Collider " + other.gameObject.tag);
+        
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+    
+    
+    // Handle trigger zones here
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Interactable"))
+        {
+            Debug.Log("In range of Interactable object");
+            canInteract = true;
+        }
+        else if (other.gameObject.CompareTag("Item"))
+        {
+            Debug.Log("In range of Item");
+            isTriggerAnItem = true;
+        }
+        
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Interactable"))
+        {
+            Debug.Log("Leaving range of Interactable object");
+            canInteract = false;
+        }
+        else if (other.gameObject.CompareTag("Item"))
+        {
+            Debug.Log("Leaving range of Item");
+            isTriggerAnItem = false;
         }
     }
 }
