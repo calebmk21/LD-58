@@ -101,6 +101,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnCollisionExit(Collision other)
+    {
+        
+        Debug.Log("Entered Collider " + other.gameObject.tag);
+        
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+    
     
     // Handle trigger zones here
     public void OnTriggerEnter(Collider other)
