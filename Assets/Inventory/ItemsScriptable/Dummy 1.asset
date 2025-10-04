@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eff6a6c3eb3d2bf44928cfa058f88f4b, type: 3}
-  m_Name: Dummy
+  m_Name: Dummy 1
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  id: test
-  description: testing
+  id: test1
+  description: desc
   icon: {fileID: 0}
-  prefab: {fileID: 1026326607165842122, guid: e572f7d05e65c89479448f30f510cfb5, type: 3}
+  prefab: {fileID: 4919234233462579019, guid: 28afd3ac6edfe034e9d5239487506037, type: 3}
   tag: 0

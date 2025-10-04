@@ -1,16 +1,15 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.UI;
 
 public class Journal : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public SerializedDictionary<string, Item> inventoryDictionary = new();
+    
+    public void AddItemToJournal(Item item)
     {
-        
+        inventoryDictionary.Add(item.id, item);
+        Debug.Log("Logged " + item.id + " to journal");
     }
 }

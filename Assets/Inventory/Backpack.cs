@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 
 public class Backpack : MonoBehaviour
@@ -21,6 +22,7 @@ public class Backpack : MonoBehaviour
     public int currentlyCarrying = 0;
     public bool canCarryMore = true;
     public bool hasRadar = false, hasBetterBackpack = false;
+    public UnityEvent onBetterBackpack;
     
     [Header("Inventory")]
     [SerializeField]
@@ -45,10 +47,7 @@ public class Backpack : MonoBehaviour
             canCarryMore = false;
         }
 
-        if (hasBetterBackpack)
-        {
-            maxCapacity = 3;
-        }
+
     }
 
     public void Collect(Item item)
@@ -56,6 +55,16 @@ public class Backpack : MonoBehaviour
         itemList.Add(item);
         currentlyCarrying += 1;
         Debug.Log("Collected Item ID: " + item.id);
+    }
+
+    public void BetterBackpackAcquired()
+    {
+        maxCapacity = 3;
+    }
+
+    public void RadarAcquired()
+    {
+        hasRadar = true;
     }
     
 }

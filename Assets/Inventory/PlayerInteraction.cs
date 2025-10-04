@@ -29,6 +29,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             Debug.Log("Interacted Successfully");
             canInteract = false;
+            currentInteractable.TryGetComponent(out IInteractable obj);
+            obj.Interact();
         }
         else if (isTriggerAnItem && _interactAction.IsPressed() && inventory.canCarryMore)
         {
