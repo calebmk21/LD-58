@@ -1,26 +1,36 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering;
 
 public class Backpack : MonoBehaviour
 {
 
-    [Header("References")] 
-    [SerializeField]
-    private BackpackUI ui;
-    private AudioSource _audioSource;
+    // [Header("References")] 
+    // [SerializeField]
+    // private BackpackUI ui;
+    // private AudioSource _audioSource;
 
-    [Header("Prefabs")] 
-    [SerializeField] 
-    private GameObject itemInWorld;
+    // [Header("Prefabs")] 
+    // [SerializeField] 
+    // private GameObject itemInWorld;
 
     [Header("Upgrades")] 
     [SerializeField] 
     private int maxCapacity = 1;
-    private int currentlyCarrying = 0;
-    private bool canCarryMore = true;
-
+    public int currentlyCarrying = 0;
+    public bool canCarryMore = true;
+    public bool hasRadar = false, hasBetterBackpack = false;
+    public UnityEvent onBetterBackpack;
+    
+    [Header("Inventory")]
+    [SerializeField]
+    public GameObject newItem;
+    public List<Item> itemList;
+    public Journal journal;
+    
+    
     private void Awake()
     {
 
@@ -36,11 +46,25 @@ public class Backpack : MonoBehaviour
         {
             canCarryMore = false;
         }
+
+
     }
 
-    public void Collect()
+    public void Collect(Item item)
     {
-        
+        itemList.Add(item);
+        currentlyCarrying += 1;
+        Debug.Log("Collected Item ID: " + item.id);
+    }
+
+    public void BetterBackpackAcquired()
+    {
+        maxCapacity = 3;
+    }
+
+    public void RadarAcquired()
+    {
+        hasRadar = true;
     }
     
 }
