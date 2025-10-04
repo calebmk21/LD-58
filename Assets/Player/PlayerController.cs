@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     
     // basic movement floats
     public float moveSpeed = 10f, lookSpeed = 7f, jumpPower = 5f, gravityForce = -10f;
-    public float verticalVelocity;
+    public float verticalVelocity, maxVerticalVelocity = -5f;
     public float rotY;
     
     // interactions
@@ -27,12 +27,21 @@ public class PlayerController : MonoBehaviour
         move *= moveSpeed * Time.deltaTime;
         _controller.Move(move);
 
-        if (!isGrounded)
+        verticalVelocity += gravityForce * Time.deltaTime;
+        Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
+        _controller.Move(jumpVec);
+
+        if (verticalVelocity < maxVerticalVelocity)
         {
-            verticalVelocity += gravityForce * Time.deltaTime;
-            Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
-            _controller.Move(jumpVec);
+            verticalVelocity = 0f;
         }
+        
+        // if (!isGrounded)
+        // {
+        //     verticalVelocity += gravityForce * Time.deltaTime;
+        //     Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
+        //     _controller.Move(jumpVec);
+        // }
 
         // if (isGrounded)
         // {
