@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - Item
   - Seal
+  - Water
   layers:
   - Default
   - TransparentFX

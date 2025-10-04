@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class PlayerDamage : MonoBehaviour
 {
     private int sealHitsLeft = 2;
-    private bool fellInWater = false;
 
     public float knockBackForce = 15f;
     public float knockBackDuration = 0.3f;
@@ -51,12 +51,12 @@ public class PlayerDamage : MonoBehaviour
             }
             else if (sealHitsLeft == 0)
             {
-                // Player dies
+                // TODO: Player dies
             }
         }
         else if (other.gameObject.tag == "Water")
         {
-            // Player dies
+            StartCoroutine(Drown());
         }
     }
 
@@ -69,5 +69,12 @@ public class PlayerDamage : MonoBehaviour
         isKnockedBack = true;
         knockBackTimer = knockBackDuration;
         knockBackDirection = dir;
+    }
+
+    IEnumerator Drown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log("Drowned in water");
+        // TODO: Player dies
     }
 }
