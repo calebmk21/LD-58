@@ -97,6 +97,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+    // Handle trigger zones here
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Interactable"))

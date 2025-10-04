@@ -15,19 +15,32 @@ public class Backpack : MonoBehaviour
     [SerializeField] 
     private GameObject itemInWorld;
 
-    [Header("Dict")] 
+    [Header("Upgrades")] 
     [SerializeField] 
-    private SerializedDictionary<int, Item> inventoryDictionary = new();
-    public List<Item> Inventory { get; set; }
+    private int maxCapacity = 1;
+    private int currentlyCarrying = 0;
+    private bool canCarryMore = true;
 
     private void Awake()
     {
-        Inventory = new List<Item>();
+
     }
 
-    public void Collect(Item item)
+    void Update()
     {
-        inventoryDictionary.Add(item.id, item);
-        Inventory.Add(item);
+        if (currentlyCarrying < maxCapacity)
+        {
+            canCarryMore = true;
+        }
+        else
+        {
+            canCarryMore = false;
+        }
     }
+
+    public void Collect()
+    {
+        
+    }
+    
 }
