@@ -1,19 +1,22 @@
 using System;
 using UnityEditor;
+using UnityEditor.Searcher;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private CharacterController _controller;
-
+    
     // basic movement floats
     public float moveSpeed = 10f, lookSpeed = 7f, jumpPower = 5f, gravityForce = -10f;
     public float verticalVelocity;
     public float rotY;
-
+    
+    // interactions
     public bool isSprinting = false, isGrounded = true;
-
-    public bool canInteract = false;
+    public bool canInteract, isTriggerAnItem;
+    
+    
     void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -72,13 +75,13 @@ public class PlayerController : MonoBehaviour
 
     public void Interact()
     {
-        int interactionCounter = 0;
-        
         if (canInteract)
         {
-            interactionCounter += 1;
             Debug.Log("Interacted!");
-            Debug.Log(interactionCounter);
+        }
+        else if (isTriggerAnItem)
+        {
+            
         }
     }
 
@@ -101,6 +104,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("In range of Interactable object");
             canInteract = true;
         }
+        else if (other.gameObject.CompareTag("Item"))
+        {
+            Debug.Log("In range of Item");
+            isTriggerAnItem = true;
+        }
+        
     }
 
     public void OnTriggerExit(Collider other)
@@ -109,6 +118,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Leaving range of Interactable object");
             canInteract = false;
+        }
+        else if (other.gameObject.CompareTag("Item"))
+        {
+            Debug.Log("Leaving range of Item");
+            isTriggerAnItem = false;
         }
     }
 }

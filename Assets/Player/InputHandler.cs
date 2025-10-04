@@ -1,13 +1,19 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.TextCore.Text;
 
 public class InputHandler : MonoBehaviour
 {
     public PlayerController controller;
+    public Backpack inventory;
+    public WorldItem nearbyItem;
+    public bool inRangeOfItem = false;
     
     // Input Actions initialized to be assigned at Start
     private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction, _interactAction;
+    
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +43,24 @@ public class InputHandler : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Item"))
+        {
+            nearbyItem = other.gameObject.GetComponent<WorldItem>();
+            inRangeOfItem = true;
+        }
+    }
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Item"))
+        {
+            nearbyItem = null;
+            inRangeOfItem = false;
+        }
+    }
+    
+
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
         controller.Jump();
@@ -49,7 +73,10 @@ public class InputHandler : MonoBehaviour
 
     private void OnInteractPerformed(InputAction.CallbackContext context)
     {
-        controller.Interact();
+        if (inRangeOfItem && nearbyItem != null)
+        {
+            // inventory.Collect();
+        }
     }
 
 }

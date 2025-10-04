@@ -415,6 +415,7 @@ MonoBehaviour:
   isSprinting: 0
   isGrounded: 1
   canInteract: 0
+  isTriggerAnItem: 0
 --- !u!114 &734394205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +429,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   controller: {fileID: 734394204}
+  inventory: {fileID: 0}
+  nearbyItem: {fileID: 0}
+  inRangeOfItem: 0
 --- !u!1 &955345802
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +462,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   controller: {fileID: 734394204}
+  inventory: {fileID: 0}
+  nearbyItem: {fileID: 0}
+  inRangeOfItem: 0
 --- !u!4 &955345805
 Transform:
   m_ObjectHideFlags: 0
