@@ -689,6 +689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c02a0977e064fcda5435311bea021a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDamage
+  knockBackForce: 15
+  knockBackDuration: 0.3
 --- !u!1 &1460308348
 GameObject:
   m_ObjectHideFlags: 0

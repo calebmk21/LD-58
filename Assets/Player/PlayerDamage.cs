@@ -6,8 +6,8 @@ public class PlayerDamage : MonoBehaviour
     private int sealHitsLeft = 2;
     private bool fellInWater = false;
 
-    public float knockBackForce = 5f;
-    public float knockBackDuration = 5f;
+    public float knockBackForce = 15f;
+    public float knockBackDuration = 0.3f;
     private Vector3 knockBackDirection;
     private float knockBackTimer;
     private bool isKnockedBack = false;
@@ -25,6 +25,8 @@ public class PlayerDamage : MonoBehaviour
     {
         if (isKnockedBack)
         {
+            Debug.Log(knockBackDirection);
+            Debug.Log(knockBackForce);
             controller.Move(knockBackDirection * knockBackForce * Time.deltaTime);
             Debug.Log("First: " + knockBackDirection * knockBackForce * Time.deltaTime);
             Debug.Log("Second: " + knockBackDirection * knockBackForce);
