@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float rotY;
 
     public bool isSprinting = false, isGrounded = true;
+
+    public bool canInteract = false;
     void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -68,6 +70,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Interact()
+    {
+        int interactionCounter = 0;
+        
+        if (canInteract)
+        {
+            interactionCounter += 1;
+            Debug.Log("Interacted!");
+            Debug.Log(interactionCounter);
+        }
+    }
+
     public void OnCollisionEnter(Collision other)
     {
         
@@ -77,6 +91,24 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
             verticalVelocity = 0f;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Interactable"))
+        {
+            Debug.Log("In range of Interactable object");
+            canInteract = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Interactable"))
+        {
+            Debug.Log("Leaving range of Interactable object");
+            canInteract = false;
         }
     }
 }

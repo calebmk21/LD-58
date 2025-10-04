@@ -6,7 +6,8 @@ public class InputHandler : MonoBehaviour
 {
     public PlayerController controller;
     
-    private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction;
+    // Input Actions initialized to be assigned at Start
+    private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction, _interactAction;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,9 +17,11 @@ public class InputHandler : MonoBehaviour
         _lookAction = InputSystem.actions.FindAction("Look");
         _jumpAction = InputSystem.actions.FindAction("Jump");
         _sprintAction = InputSystem.actions.FindAction("Sprint");
+        _interactAction = InputSystem.actions.FindAction("Interact");
 
         _jumpAction.performed += OnJumpPerformed;
         _sprintAction.performed += OnSprintPerformed;
+        _interactAction.performed += OnInteractPerformed;
         
         Cursor.visible = false;
     }
@@ -44,5 +47,9 @@ public class InputHandler : MonoBehaviour
         controller.Sprint();
     }
 
+    private void OnInteractPerformed(InputAction.CallbackContext context)
+    {
+        controller.Interact();
+    }
 
 }
