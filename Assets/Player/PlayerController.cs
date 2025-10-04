@@ -28,14 +28,18 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.forward * movement.y + transform.right * movement.x;
         move *= moveSpeed * Time.deltaTime;
         _controller.Move(move);
-        verticalVelocity += gravityForce * Time.deltaTime;
-        Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
-        _controller.Move(jumpVec);
 
-        if (isGrounded)
+        if (!isGrounded)
         {
-            verticalVelocity = 0f;
+            verticalVelocity += gravityForce * Time.deltaTime;
+            Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
+            _controller.Move(jumpVec);
         }
+
+        // if (isGrounded)
+        // {
+        //     verticalVelocity = 0f;
+        // }
     }
 
     public void Look(Vector2 looking)
