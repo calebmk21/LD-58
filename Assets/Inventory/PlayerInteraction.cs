@@ -10,28 +10,67 @@ interface IInteractable
 public class PlayerInteraction : MonoBehaviour
 {
 
-    public PlayerController _controller;
+    // public PlayerController _controller;
     public InputAction _interactAction;
+    public Backpack inventory;
+    
+    public bool canInteract, isTriggerAnItem;
+    public GameObject currentInteractable;
+    
     void Awake()
     {
-        _controller = GetComponent<PlayerController>();
+        // _controller = GetComponent<PlayerController>();
         _interactAction = InputSystem.actions.FindAction("Interact");
     }
     
     void Update()
     {
-        if (_controller.canInteract && _interactAction.IsPressed())
+        if (canInteract && _interactAction.IsPressed())
         {
             Debug.Log("Interacted Successfully");
-            _controller.canInteract = false;
+            canInteract = false;
         }
-        else if (_controller.isTriggerAnItem && _interactAction.IsPressed())
+        else if (isTriggerAnItem && _interactAction.IsPressed() && inventory.canCarryMore)
         {
             Debug.Log("Collected Item");
-            _controller.isTriggerAnItem = false;
+            isTriggerAnItem = false;
+            currentInteractable.TryGetComponent(out IInteractable obj);
+            obj.Interact();
         }
     }
     
-    
+    // Handle trigger zones here
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Interactable"))
+        {
+            Debug.Log("In range of Interactable object");
+            canInteract = true;
+            currentInteractable = other.gameObject;
+        }
+        else if (other.gameObject.CompareTag("Item"))
+        {
+            Debug.Log("In range of Item");
+            isTriggerAnItem = true;
+            currentInteractable = other.gameObject;
+        }
+        
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Interactable"))
+        {
+            Debug.Log("Leaving range of Interactable object");
+            canInteract = false;
+            currentInteractable = null;
+        }
+        else if (other.gameObject.CompareTag("Item"))
+        {
+            Debug.Log("Leaving range of Item");
+            isTriggerAnItem = false;
+            currentInteractable = null;
+        }
+    }
     
 }

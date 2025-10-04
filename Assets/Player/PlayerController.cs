@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
     
     // interactions
     public bool isSprinting = false, isGrounded = true;
-    public bool canInteract, isTriggerAnItem;
-    
     
     void Start()
     {
@@ -77,18 +75,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Interact()
-    {
-        if (canInteract)
-        {
-            Debug.Log("Interacted!");
-        }
-        else if (isTriggerAnItem)
-        {
-            
-        }
-    }
-
     public void OnCollisionEnter(Collision other)
     {
         
@@ -99,6 +85,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             verticalVelocity = 0f;
         }
+        
     }
 
     public void OnCollisionExit(Collision other)
@@ -113,33 +100,5 @@ public class PlayerController : MonoBehaviour
     }
     
     
-    // Handle trigger zones here
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Interactable"))
-        {
-            Debug.Log("In range of Interactable object");
-            canInteract = true;
-        }
-        else if (other.gameObject.CompareTag("Item"))
-        {
-            Debug.Log("In range of Item");
-            isTriggerAnItem = true;
-        }
-        
-    }
 
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Interactable"))
-        {
-            Debug.Log("Leaving range of Interactable object");
-            canInteract = false;
-        }
-        else if (other.gameObject.CompareTag("Item"))
-        {
-            Debug.Log("Leaving range of Item");
-            isTriggerAnItem = false;
-        }
-    }
 }
