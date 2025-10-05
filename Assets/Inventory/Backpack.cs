@@ -22,7 +22,8 @@ public class Backpack : MonoBehaviour
     public int currentlyCarrying = 0;
     public bool canCarryMore = true;
     public bool hasRadar = false, hasBetterBackpack = false;
-    public UnityEvent onBetterBackpack;
+    // public UnityEvent onBetterBackpack, onRadarAcquired;
+    public GameObject RadarPanel;
     
     [Header("Inventory")]
     [SerializeField]
@@ -65,6 +66,7 @@ public class Backpack : MonoBehaviour
     public void RadarAcquired()
     {
         hasRadar = true;
+        RadarPanel.SetActive(true);
     }
     
 }

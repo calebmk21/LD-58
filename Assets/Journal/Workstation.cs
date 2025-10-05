@@ -16,14 +16,15 @@ public class Workstation : MonoBehaviour, IInteractable
         for (int i = 0; i < inventory.currentlyCarrying; i++)
         {
             journal.AddItemToJournal(inventory.itemList[i]);
-            if (inventory.itemList[i].id == "backpack")
+            if (inventory.itemList[i].callsign == "backpack")
             {
                 inventory.hasBetterBackpack = true;
                 inventory.BetterBackpackAcquired();
 ;            }
-            else if (inventory.itemList[i].id == "radar")
+            else if (inventory.itemList[i].callsign == "radar")
             {
                 inventory.hasRadar = true;
+                inventory.RadarAcquired();
             }
 
             inventory.currentlyCarrying -= 1;
