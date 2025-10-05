@@ -77,7 +77,7 @@ public class AITarget : MonoBehaviour
             m_Animator.SetBool("Attack", false);
             m_Agent.destination = WaterHole.position;
 
-            if (Vector3.Distance(m_Agent.transform.position, WaterHole.position) <= 1f)
+            if (Vector3.Distance(m_Agent.transform.position, WaterHole.position) <= 2f)
             {
                 m_Animator.SetBool("Attack", true);
             }
