@@ -9,8 +9,8 @@ public class Item : ScriptableObject
     public int id;
     public string callsign;
     public string panelName;
-    public string description;
-    public Sprite icon;
+    // public string description;
+    // public Sprite icon;
     public GameObject prefab;
     public ItemTag tag;
     // GameObject panel;

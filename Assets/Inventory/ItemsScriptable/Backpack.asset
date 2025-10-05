@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   id: 0
   callsign: backpack
-  panelName: ChildSacrificePanel
-  description: 
-  icon: {fileID: 0}
-  prefab: {fileID: 2760154317163580171, guid: 5d6dc38a323a9a841946db1ef4552a4a, type: 3}
-  tag: 0
+  panelName: BackpackPanel
+  prefab: {fileID: 1642834950196003879, guid: de3ecb209df34b447b41ce7bf7ef1882, type: 3}
+  tag: 1

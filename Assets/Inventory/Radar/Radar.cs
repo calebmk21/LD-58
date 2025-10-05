@@ -16,11 +16,11 @@ public class Radar : MonoBehaviour
     public GameObject[] targets;
     private float radarWidth, radarHeight, blipWidth, blipHeight;
     public List<GameObject> blips;
-    
+    public bool collectedAnItem = false;
     void Start()
     {
 
-        targets = GameObject.FindGameObjectsWithTag(blipTag);
+        //targets = GameObject.FindGameObjectsWithTag(blipTag);
         
         radarWidth  = GetComponent<RectTransform>().rect.width;
         radarHeight = GetComponent<RectTransform>().rect.height;
@@ -29,15 +29,19 @@ public class Radar : MonoBehaviour
     }
  
     void Update() {
+        
+        // Gathers creates a new array when you collect an item
         RemoveAllBlips();
 
+        
+        
         DisplayBlips(blipPrefab);
     }
  
     private void DisplayBlips(GameObject prefabBlip) {
         Vector3 playerPos = player.position;
         
-        
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(blipTag);
         //Debug.Log(playerPos);
  
         foreach (GameObject target in targets) {

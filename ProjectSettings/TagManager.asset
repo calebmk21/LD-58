@@ -9,6 +9,7 @@ TagManager:
   - Item
   - Seal
   - Water
+  - Progression
   layers:
   - Default
   - TransparentFX

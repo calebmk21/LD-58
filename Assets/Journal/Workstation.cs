@@ -10,6 +10,7 @@ public class Workstation : MonoBehaviour, IInteractable
 
     public Backpack inventory;
     public Journal journal;
+    //public Radar radar;
     
     public void Analyze()
     {
@@ -28,10 +29,11 @@ public class Workstation : MonoBehaviour, IInteractable
             }
 
             inventory.currentlyCarrying -= 1;
-            
         }
+        inventory.itemList.Clear();
+        //radar.collectedAnItem = true;
 
-        
+
     }
 
     public void Interact()

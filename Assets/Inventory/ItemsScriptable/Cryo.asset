@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff6a6c3eb3d2bf44928cfa058f88f4b, type: 3}
   m_Name: Cryo
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  id: 0
+  id: -1
   callsign: Cryo
+  panelName: 
   description: 
   icon: {fileID: 0}
   prefab: {fileID: 6481754745243008964, guid: 94b1f32223b8fa8439fed80f3caa6218, type: 3}

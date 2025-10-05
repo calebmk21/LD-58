@@ -36,7 +36,7 @@ public class Backpack : MonoBehaviour
     {
 
     }
-
+    
     void Update()
     {
         if (currentlyCarrying < maxCapacity)
@@ -48,6 +48,11 @@ public class Backpack : MonoBehaviour
             canCarryMore = false;
         }
 
+        if (itemList == null)
+        {
+            itemList = new();
+        }
+        
 
     }
 
