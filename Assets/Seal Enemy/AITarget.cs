@@ -25,7 +25,7 @@ public class AITarget : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        m_Agent = GetComponent<NavMeshAgent>();
+        m_Agent = transform.parent.gameObject.GetComponent<NavMeshAgent>();
         m_Animator = GetComponent<Animator>();
 
         m_Agent.speed = defaultSpeed;
@@ -42,12 +42,11 @@ public class AITarget : MonoBehaviour
         if (m_Distance < AttackDistance)
         {
             m_Agent.isStopped = true;
-            // m_Animator.SetBool("Attack", true);
+            m_Animator.SetBool("Attack", true);
         }
         else if (m_Distance < FollowDistance)
         {
             m_Agent.isStopped = false;
-            // m_Animator.SetBool("Attack", false);
 
             currentLaunchCountdown -= Time.deltaTime;
             Debug.Log(currentLaunchCountdown);
@@ -56,6 +55,7 @@ public class AITarget : MonoBehaviour
                 Debug.Log("launching");
 
                 launching = true;
+                m_Animator.SetBool("Attack", true);
                 m_Agent.isStopped = true;
 
                 Vector3 dir = Target.position - transform.position;
@@ -67,23 +67,21 @@ public class AITarget : MonoBehaviour
             }
             else
             {
+                m_Animator.SetBool("Attack", false);
                 m_Agent.destination = Target.position;
             }
         }
         else
         {
             m_Agent.isStopped = false;
-            // m_Animator.SetBool("Attack", false);
+            m_Animator.SetBool("Attack", false);
             m_Agent.destination = WaterHole.position;
-        }
-    }
 
-    void OnAnimatorMove()
-    {
-        //if (m_Animator.GetBool("Attack") == false)
-        //{
-        //    m_Agent.speed = (m_Animator.deltaPosition / Time.deltaTime).magnitude;
-        //}
+            if (Vector3.Distance(m_Agent.transform.position, WaterHole.position) <= 1f)
+            {
+                m_Animator.SetBool("Attack", true);
+            }
+        }
     }
 
     IEnumerator Launch()
