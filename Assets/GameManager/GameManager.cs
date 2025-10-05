@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public Ending route;
     public bool diedToSeal = false, diedOfHypothermia = false, diedToWater = false;
     public bool died = false;
+
+    public int warmItems = 0;
+    
     public enum Ending
     {
         Neutral,

@@ -27,6 +27,10 @@ public class Workstation : MonoBehaviour, IInteractable
                 inventory.hasRadar = true;
                 inventory.RadarAcquired();
             }
+            else if (inventory.itemList[i].callsign == "warm")
+            {
+                GameManager.Instance.warmItems += 1;
+            }
 
             inventory.currentlyCarrying -= 1;
         }

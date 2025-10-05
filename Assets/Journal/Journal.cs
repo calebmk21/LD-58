@@ -29,11 +29,16 @@ public class Journal : MonoBehaviour
         journalUI.gameObject.SetActive(isJournalOpen);
         if (isJournalOpen)
         {
-            // pause
+            // pausing game
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
-            // unpause
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
         }
     }
     
