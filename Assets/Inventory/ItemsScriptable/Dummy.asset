@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff6a6c3eb3d2bf44928cfa058f88f4b, type: 3}
   m_Name: Dummy
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  id: -1
-  description: Test object
+  id: test
+  description: testing
   icon: {fileID: 0}
-  prefab: {fileID: 8504954354598722510, guid: 203ae9ec46b859e4293770ddaf99149e, type: 3}
+  prefab: {fileID: 1026326607165842122, guid: e572f7d05e65c89479448f30f510cfb5, type: 3}
   tag: 0

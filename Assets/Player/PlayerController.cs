@@ -9,13 +9,11 @@ public class PlayerController : MonoBehaviour
     
     // basic movement floats
     public float moveSpeed = 10f, lookSpeed = 7f, jumpPower = 5f, gravityForce = -10f;
-    public float verticalVelocity;
+    public float verticalVelocity, maxVerticalVelocity = -5f;
     public float rotY;
     
     // interactions
     public bool isSprinting = false, isGrounded = true;
-    public bool canInteract, isTriggerAnItem;
-    
     
     void Start()
     {
@@ -29,12 +27,21 @@ public class PlayerController : MonoBehaviour
         move *= moveSpeed * Time.deltaTime;
         _controller.Move(move);
 
-        if (!isGrounded)
+        verticalVelocity += gravityForce * Time.deltaTime;
+        Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
+        _controller.Move(jumpVec);
+
+        if (verticalVelocity < maxVerticalVelocity)
         {
-            verticalVelocity += gravityForce * Time.deltaTime;
-            Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
-            _controller.Move(jumpVec);
+            verticalVelocity = 0f;
         }
+        
+        // if (!isGrounded)
+        // {
+        //     verticalVelocity += gravityForce * Time.deltaTime;
+        //     Vector3 jumpVec = new Vector3(0, verticalVelocity, 0) * Time.deltaTime;
+        //     _controller.Move(jumpVec);
+        // }
 
         // if (isGrounded)
         // {
@@ -77,18 +84,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Interact()
-    {
-        if (canInteract)
-        {
-            Debug.Log("Interacted!");
-        }
-        else if (isTriggerAnItem)
-        {
-            
-        }
-    }
-
     public void OnCollisionEnter(Collision other)
     {
         
@@ -99,6 +94,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             verticalVelocity = 0f;
         }
+        
     }
 
     public void OnCollisionExit(Collision other)
@@ -113,33 +109,5 @@ public class PlayerController : MonoBehaviour
     }
     
     
-    // Handle trigger zones here
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Interactable"))
-        {
-            Debug.Log("In range of Interactable object");
-            canInteract = true;
-        }
-        else if (other.gameObject.CompareTag("Item"))
-        {
-            Debug.Log("In range of Item");
-            isTriggerAnItem = true;
-        }
-        
-    }
 
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Interactable"))
-        {
-            Debug.Log("Leaving range of Interactable object");
-            canInteract = false;
-        }
-        else if (other.gameObject.CompareTag("Item"))
-        {
-            Debug.Log("Leaving range of Item");
-            isTriggerAnItem = false;
-        }
-    }
 }

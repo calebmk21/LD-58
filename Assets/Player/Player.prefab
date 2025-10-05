@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3553689236510815020}
   - component: {fileID: 3758472387756824993}
   - component: {fileID: 745872537997172523}
+  - component: {fileID: 1382473317667309837}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -158,13 +159,12 @@ MonoBehaviour:
   moveSpeed: 5
   lookSpeed: 7
   jumpPower: 10
-  gravityForce: -10
+  gravityForce: -15
   verticalVelocity: 0
+  maxVerticalVelocity: -15
   rotY: 0
   isSprinting: 0
   isGrounded: 1
-  canInteract: 0
-  isTriggerAnItem: 0
 --- !u!114 &3758472387756824993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   controller: {fileID: 3553689236510815020}
-  inventory: {fileID: 0}
+  inventory: {fileID: 1382473317667309837}
   nearbyItem: {fileID: 0}
   inRangeOfItem: 0
 --- !u!114 &745872537997172523
@@ -193,7 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd5383c95c7aeb4bb2df303d2c1516f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
-  _controller: {fileID: 3553689236510815020}
   _interactAction:
     m_Name: Interact
     m_Type: 0
@@ -203,6 +202,33 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  inventory: {fileID: 1382473317667309837}
+  canInteract: 0
+  isTriggerAnItem: 0
+  currentInteractable: {fileID: 0}
+--- !u!114 &1382473317667309837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47674912144071277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9009fc80e6f0f4da67b3fc2b0e748b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Backpack
+  maxCapacity: 1
+  currentlyCarrying: 0
+  canCarryMore: 1
+  hasRadar: 0
+  hasBetterBackpack: 0
+  onBetterBackpack:
+    m_PersistentCalls:
+      m_Calls: []
+  newItem: {fileID: 0}
+  itemList: []
+  journal: {fileID: 0}
 --- !u!1 &7630593092695282289
 GameObject:
   m_ObjectHideFlags: 0
