@@ -6,9 +6,13 @@ public enum ItemTag {Trinket, Tool, Artifact}
 [CreateAssetMenu(fileName = "Item", menuName = "Collectibles/Item")]
 public class Item : ScriptableObject
 {
-    public string id;
+    public int id;
+    public string callsign;
+    public string panelName;
     public string description;
     public Sprite icon;
     public GameObject prefab;
     public ItemTag tag;
+    // GameObject panel;
 }
+

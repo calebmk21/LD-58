@@ -1,15 +1,118 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.UI;
 
 public class Journal : MonoBehaviour
 {
 
-    public SerializedDictionary<string, Item> inventoryDictionary = new();
+    public SerializedDictionary<int, Item> inventoryDictionary = new();
+    private int fossils = 0, trinkets = 0, tools = 0;
+    public int maxFossils = 8;
+    public int maxTrinkets, maxTools;
+
+    public JournalUI journalUI;
+
+    private bool isJournalOpen = false;
+    // public InputAction ;
+
+    // void Start()
+    // {
+    //     
+    // }
+
+    public void UseJournal()
+    {
+        isJournalOpen = !isJournalOpen;
+        journalUI.gameObject.SetActive(isJournalOpen);
+        if (isJournalOpen)
+        {
+            // pause
+        }
+        else
+        {
+            // unpause
+        }
+    }
     
     public void AddItemToJournal(Item item)
     {
-        inventoryDictionary.Add(item.id, item);
-        Debug.Log("Logged " + item.id + " to journal");
+        int itemID = item.id;
+        inventoryDictionary.Add(itemID, item);
+        journalUI.UnlockEntry(item.panelName);
+        Debug.Log("Logged " + item.callsign + " to journal");
+    }
+
+    public void ComputeNumberOfEachItem()
+    {
+        foreach (KeyValuePair<int, Item> entry in inventoryDictionary)
+        {
+            Item item = entry.Value;
+            if (item.tag == ItemTag.Trinket)
+            {
+                trinkets += 1;
+            }
+            else if (item.tag == ItemTag.Tool)
+            {
+                tools += 1;
+            }
+            else if (item.tag == ItemTag.Artifact)
+            {
+                fossils += 1;
+            }
+        }
+    }
+
+    // public ItemTag RankItemTag()
+    // {
+    //     if (trinkets > fossils && trinkets > tools)
+    //     {
+    //         return ItemTag.Trinket;
+    //     }
+    //     
+    //     
+    //     
+    //     else
+    //     {
+    //         return ItemTag.Tool;
+    //     } 
+    // }
+    
+    public void EvaluateEnding()
+    {
+        ComputeNumberOfEachItem();
+
+        GameManager.Ending ending;
+
+        if (trinkets == maxTrinkets && tools == maxTools)
+        {
+            ending = GameManager.Ending.Detective;
+        }
+        
+        // Conference ending is achieved if you get all fossils or at least 4 fossils and few trinkets and tools
+        else if (fossils == maxFossils || (fossils > 4 && trinkets + tools < 2) )
+        {
+            ending = GameManager.Ending.Conference;
+        }
+        
+        // You died.
+        else if (GameManager.Instance.died)
+        {
+            ending = GameManager.Ending.Dead;
+        }
+
+        else if (tools + fossils + trinkets == 0)
+        {
+            ending = GameManager.Ending.Coward;
+        }
+        
+        else
+        {
+            ending = GameManager.Ending.Neutral;
+        }
+        
+        GameManager.Instance.UpdateEnding(ending);
     }
 }

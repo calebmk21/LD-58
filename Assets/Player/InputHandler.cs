@@ -10,10 +10,11 @@ public class InputHandler : MonoBehaviour
     public Backpack inventory;
     public WorldItem nearbyItem;
     public bool inRangeOfItem = false;
+
+    public Journal journal;
     
     // Input Actions initialized to be assigned at Start
-    private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction, _interactAction;
-    
+    private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction, _interactAction, _journalAction;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,10 +25,12 @@ public class InputHandler : MonoBehaviour
         _jumpAction = InputSystem.actions.FindAction("Jump");
         _sprintAction = InputSystem.actions.FindAction("Sprint");
         _interactAction = InputSystem.actions.FindAction("Interact");
+        _journalAction = InputSystem.actions.FindAction("Journal");
 
         _jumpAction.performed += OnJumpPerformed;
         _sprintAction.performed += OnSprintPerformed;
         _interactAction.performed += OnInteractPerformed;
+        _journalAction.performed += OnJournalPerformed;
         
         Cursor.visible = false;
     }
@@ -77,6 +80,11 @@ public class InputHandler : MonoBehaviour
         {
             // inventory.Collect();
         }
+    }
+
+    private void OnJournalPerformed(InputAction.CallbackContext context)
+    {
+        journal.UseJournal();
     }
 
 }
