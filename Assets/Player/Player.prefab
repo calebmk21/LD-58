@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 3553689236510815020}
   - component: {fileID: 3758472387756824993}
   - component: {fileID: 745872537997172523}
-  - component: {fileID: 1382473317667309837}
+  - component: {fileID: 7019310017715409786}
+  - component: {fileID: 4493176096458025916}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -32,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47674912144071277}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -84.52462, y: 1.6600001, z: 106.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -164,7 +165,7 @@ MonoBehaviour:
   maxVerticalVelocity: -15
   rotY: 0
   isSprinting: 0
-  isGrounded: 1
+  isGrounded: 0
 --- !u!114 &3758472387756824993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   controller: {fileID: 3553689236510815020}
-  inventory: {fileID: 1382473317667309837}
+  inventory: {fileID: 0}
   nearbyItem: {fileID: 0}
   inRangeOfItem: 0
 --- !u!114 &745872537997172523
@@ -202,11 +203,11 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  inventory: {fileID: 1382473317667309837}
+  inventory: {fileID: 7019310017715409786}
   canInteract: 0
   isTriggerAnItem: 0
   currentInteractable: {fileID: 0}
---- !u!114 &1382473317667309837
+--- !u!114 &7019310017715409786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,10 +226,37 @@ MonoBehaviour:
   hasBetterBackpack: 0
   onBetterBackpack:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7019310017715409786}
+        m_TargetAssemblyTypeName: Backpack, Assembly-CSharp
+        m_MethodName: BetterBackpackAcquired
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   newItem: {fileID: 0}
   itemList: []
-  journal: {fileID: 0}
+  journal: {fileID: 4493176096458025916}
+--- !u!114 &4493176096458025916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47674912144071277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26be254544ba444b9b01758ca3d049f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Journal
+  inventoryDictionary:
+    m_Keys: []
+    m_Values: []
 --- !u!1 &7630593092695282289
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,13 +284,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7630593092695282289}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13121697, y: 0.09500928, z: -0.01263475, w: 0.9867096}
-  m_LocalPosition: {x: -1.7, y: 8.9, z: -14.2}
+  m_LocalRotation: {x: 0.21561278, y: 0.09357016, z: -0.02076114, w: 0.97176373}
+  m_LocalPosition: {x: -1.7, y: 12.95, z: -14.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6177961678090767537}
-  m_LocalEulerAnglesHint: {x: 15.15, y: 11, z: 0}
+  m_LocalEulerAnglesHint: {x: 25.02, y: 11, z: 0}
 --- !u!20 &8475936663667270371
 Camera:
   m_ObjectHideFlags: 0

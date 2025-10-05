@@ -54,10 +54,6 @@ public class PlayerDamage : MonoBehaviour
                 // TODO: Player dies
             }
         }
-        else if (other.gameObject.tag == "Water")
-        {
-            StartCoroutine(Drown());
-        }
     }
 
     private void KnockBack(Collider other)
@@ -69,12 +65,5 @@ public class PlayerDamage : MonoBehaviour
         isKnockedBack = true;
         knockBackTimer = knockBackDuration;
         knockBackDirection = dir;
-    }
-
-    IEnumerator Drown()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("Drowned in water");
-        // TODO: Player dies
     }
 }
