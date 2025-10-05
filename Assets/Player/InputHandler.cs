@@ -12,6 +12,8 @@ public class InputHandler : MonoBehaviour
     public bool inRangeOfItem = false;
 
     public Journal journal;
+
+    [SerializeField] private Animator animator;
     
     // Input Actions initialized to be assigned at Start
     private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction, _interactAction, _journalAction;
@@ -39,6 +41,10 @@ public class InputHandler : MonoBehaviour
     void Update()
     {
         Vector2 CharacterMovement = _moveAction.ReadValue<Vector2>();
+        if (CharacterMovement != Vector2.zero)
+            animator.SetBool("Move", true);
+        else
+            animator.SetBool("Move", false);
         controller.Move(CharacterMovement);
 
         Vector2 SightlineVector = _lookAction.ReadValue<Vector2>();
