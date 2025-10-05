@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.45109472, g: 0.68594027, b: 0.8773585, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.022
@@ -317,6 +317,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 47674912144071277, guid: 4192c816814137d488d9089bab1a904d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553689236510815020, guid: 4192c816814137d488d9089bab1a904d, type: 3}
+      propertyPath: moveSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6177961678090767537, guid: 4192c816814137d488d9089bab1a904d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 126.98141
@@ -470,10 +478,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.0104334
+  m_Height: 7.7593613
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.46323037, z: -2.51482}
 --- !u!23 &441970162
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -499,7 +507,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 06875711347244ac4b20748e7bedf913, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -529,7 +537,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 441970160}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2959467708922500008, guid: aa7b49278bb3f4bfe9e245f4a9a3f9e7, type: 3}
 --- !u!4 &441970164
 Transform:
   m_ObjectHideFlags: 0
@@ -555,7 +563,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -605,6 +613,11 @@ MonoBehaviour:
   WaterHole: {fileID: 1460308349}
   AttackDistance: 0.1
   FollowDistance: 10
+  defaultSpeed: 6
+  defaultAcceleration: 8
+  launchTimer: 4
+  launchSpeed: 100
+  launchAcceleration: 100
 --- !u!1 &955344931 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 47674912144071277, guid: 4192c816814137d488d9089bab1a904d, type: 3}
