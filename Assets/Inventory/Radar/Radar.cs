@@ -10,10 +10,10 @@ public class Radar : MonoBehaviour
     public float radarDistance = 25, blipSize = 15;
     public bool usePlayerDirection = true;
     public Transform player;
-    public GameObject blipPrefab;
-    public string blipTag = "Item";
+    public GameObject blipPrefab, campBlipPrefab;
+    public string blipTag = "Item", campBlip = "Camp";
 
-    public GameObject[] targets;
+    //public GameObject[] targets;
     private float radarWidth, radarHeight, blipWidth, blipHeight;
     public List<GameObject> blips;
     public bool collectedAnItem = false;
@@ -32,16 +32,16 @@ public class Radar : MonoBehaviour
         
         // Gathers creates a new array when you collect an item
         RemoveAllBlips();
-
         
+        DisplayBlips(blipTag, blipPrefab);
+        //DisplayBlips(campBlip, campBlipPrefab);
         
-        DisplayBlips(blipPrefab);
     }
  
-    private void DisplayBlips(GameObject prefabBlip) {
+    private void DisplayBlips(string tagOfBlip, GameObject prefabBlip) {
         Vector3 playerPos = player.position;
         
-        GameObject[] targets = GameObject.FindGameObjectsWithTag(blipTag);
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(tagOfBlip);
         //Debug.Log(playerPos);
  
         foreach (GameObject target in targets) {

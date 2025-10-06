@@ -91,7 +91,12 @@ public class Journal : MonoBehaviour
 
         GameManager.Ending ending;
 
-        if (trinkets == maxTrinkets && tools == maxTools)
+        // You died.
+        if (GameManager.Instance.died)
+        {
+            ending = GameManager.Ending.Dead;
+        }
+        else if (trinkets == maxTrinkets && tools == maxTools)
         {
             ending = GameManager.Ending.Detective;
         }
@@ -102,12 +107,6 @@ public class Journal : MonoBehaviour
             ending = GameManager.Ending.Conference;
         }
         
-        // You died.
-        else if (GameManager.Instance.died)
-        {
-            ending = GameManager.Ending.Dead;
-        }
-
         else if (tools + fossils + trinkets == 0)
         {
             ending = GameManager.Ending.Coward;

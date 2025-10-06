@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,14 +11,62 @@ public class GameManager : MonoBehaviour
     // public int dayNumber = 0;
     // public int finalDay = 7;
     public float maxTimeToFreeze = 1000f;
-    public float currentTime = 0f;
+    public float currentTime;
     public Journal journal;
     
     public Ending route;
-    public bool diedToSeal = false, diedOfHypothermia = false, diedToWater = false;
-    public bool died = false;
+    public bool diedToSeal = false, diedOfHypothermia = false;//, diedToWater = false;
+    public bool died = false, nearWarmth = false;
 
-    public int warmItems = 0;
+    public int warmItems = 0, maxWarmItems = 5;
+
+    public GameObject tutorialPanel;
+    
+    
+    //public Image freezeMeter; 
+    public Slider freezeMeter;
+    void Start()
+    {
+        currentTime = maxTimeToFreeze;
+        freezeMeter.value = maxTimeToFreeze;
+    }
+
+    void Update()
+    {
+        if (freezeMeter.value == 0f)
+        {
+            died = true;
+            diedOfHypothermia = true;
+            EndingSequence();
+        }
+        else if (!nearWarmth)
+        {
+            // meter depletes slower the more warm items you have
+            freezeMeter.value -= 100 * (maxWarmItems - warmItems) * Time.deltaTime;
+        }
+        // being near warmth brings your warmth meter back up
+        else if (nearWarmth && !died)
+        {
+            if (freezeMeter.value < maxTimeToFreeze)
+            {
+                freezeMeter.value += 3 * (1 + warmItems) * Time.deltaTime;
+            }
+            else
+            {
+                freezeMeter.value = maxTimeToFreeze;
+            }
+        }
+    }
+
+    public void OpeningSequence()
+    {
+        // Tutorial sequence
+        Time.timeScale = 0f;
+        tutorialPanel.SetActive(true);
+    }
+    
+    
+    
     
     public enum Ending
     {
@@ -57,8 +107,49 @@ public class GameManager : MonoBehaviour
 
     public void EndingSequence()
     {
+        
+        // maybe add a fade to black? 
+        
         // uses the journal to calculate the ending obtained
         journal.EvaluateEnding();
+        
+        // transition to ending scenes
+        string endingString = "FailsafeEnding";
+
+        switch (route)
+        {
+            case (Ending.Neutral):
+                endingString = "NeutralEnding";
+                break;
+            case (Ending.Conference):
+                endingString = "ConferenceEnding";
+                break;
+            case (Ending.Detective):
+                endingString = "DetectiveEnding";
+                break;
+            case (Ending.Dead):
+                if (diedToSeal)
+                {
+                    endingString = "SealEnding";
+                }
+                else if (diedOfHypothermia)
+                {
+                    endingString = "FrozenEnding";
+                }
+                else
+                {
+                    endingString = "FailsafeEnding";
+                }
+                break;
+            case (Ending.Coward):
+                endingString = "CowardEnding";
+                break;
+        }
+
+        
+        // Debug.Log("You died of hypothermia");
+        //SceneManager.LoadScene(endingString);
+
     }
     
 }
