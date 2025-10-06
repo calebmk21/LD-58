@@ -9,6 +9,9 @@ TagManager:
   - Item
   - Seal
   - Water
+  - Progression
+  - Camp
+  - Warmth
   layers:
   - Default
   - TransparentFX

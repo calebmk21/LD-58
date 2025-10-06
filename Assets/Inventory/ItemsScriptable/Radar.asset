@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   id: 1
   callsign: radar
-  description: 
-  icon: {fileID: 0}
-  prefab: {fileID: 5546773512615656752, guid: 4c6c8e049f2e770448b20f3509c6826b, type: 3}
-  tag: 0
+  panelName: RadarPanel
+  prefab: {fileID: 7801595033562359281, guid: 99f1072268066ac4ca8cd285bdbf5868, type: 3}
+  tag: 1

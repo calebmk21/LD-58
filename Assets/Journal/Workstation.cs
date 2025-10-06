@@ -10,6 +10,7 @@ public class Workstation : MonoBehaviour, IInteractable
 
     public Backpack inventory;
     public Journal journal;
+    //public Radar radar;
     
     public void Analyze()
     {
@@ -26,12 +27,17 @@ public class Workstation : MonoBehaviour, IInteractable
                 inventory.hasRadar = true;
                 inventory.RadarAcquired();
             }
+            else if (inventory.itemList[i].callsign == "warm")
+            {
+                GameManager.Instance.warmItems += 1;
+            }
 
             inventory.currentlyCarrying -= 1;
-            
         }
+        inventory.itemList.Clear();
+        //radar.collectedAnItem = true;
 
-        
+
     }
 
     public void Interact()

@@ -29,11 +29,16 @@ public class Journal : MonoBehaviour
         journalUI.gameObject.SetActive(isJournalOpen);
         if (isJournalOpen)
         {
-            // pause
+            // pausing game
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
-            // unpause
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
         }
     }
     
@@ -86,7 +91,12 @@ public class Journal : MonoBehaviour
 
         GameManager.Ending ending;
 
-        if (trinkets == maxTrinkets && tools == maxTools)
+        // You died.
+        if (GameManager.Instance.died)
+        {
+            ending = GameManager.Ending.Dead;
+        }
+        else if (trinkets == maxTrinkets && tools == maxTools)
         {
             ending = GameManager.Ending.Detective;
         }
@@ -97,12 +107,6 @@ public class Journal : MonoBehaviour
             ending = GameManager.Ending.Conference;
         }
         
-        // You died.
-        else if (GameManager.Instance.died)
-        {
-            ending = GameManager.Ending.Dead;
-        }
-
         else if (tools + fossils + trinkets == 0)
         {
             ending = GameManager.Ending.Coward;

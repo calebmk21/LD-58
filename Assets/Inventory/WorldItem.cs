@@ -8,6 +8,7 @@ public class WorldItem : MonoBehaviour, IInteractable
     public bool inInventory = false;
     public GameObject parentObject;
     public UnityEvent onCollect;
+    public Radar radar;
 
     void Awake()
     {
@@ -18,5 +19,6 @@ public class WorldItem : MonoBehaviour, IInteractable
     {
         onCollect.Invoke();
         Destroy(parentObject);
+        radar.collectedAnItem = true;
     }
 }

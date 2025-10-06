@@ -56,6 +56,11 @@ public class PlayerInteraction : MonoBehaviour
             isTriggerAnItem = true;
             currentInteractable = other.gameObject;
         }
+        else if (other.gameObject.CompareTag("Warmth"))
+        {
+            GameManager.Instance.nearWarmth = true;
+            Debug.Log("Mmmm warm....");
+        }
         
     }
 
@@ -72,6 +77,11 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Leaving range of Item");
             isTriggerAnItem = false;
             currentInteractable = null;
+        }
+        else if (other.gameObject.CompareTag("Warmth"))
+        {
+            GameManager.Instance.nearWarmth = false;
+            Debug.Log("Leaving Warmth");
         }
     }
     
