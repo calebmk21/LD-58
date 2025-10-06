@@ -51,6 +51,8 @@ public class Workstation : MonoBehaviour, IInteractable
 
             sfx.Play();
             sfx.loop = false;
+            
+            inventory.ClearMittenUI();
         }
         else
         {

@@ -41,6 +41,7 @@ public class Radar : MonoBehaviour
     private void DisplayBlips(string tagOfBlip, GameObject prefabBlip) {
         Vector3 playerPos = player.position;
         
+        // overshooting max array size
         GameObject[] targets = GameObject.FindGameObjectsWithTag(tagOfBlip);
         //Debug.Log(playerPos);
  
@@ -55,9 +56,12 @@ public class Radar : MonoBehaviour
                 DrawBlip(blipPosition, prefabBlip);
             }
         }
+        
     }
      
-    private void RemoveAllBlips() {
+    private void RemoveAllBlips()
+    {
+        GameObject[] blips = GameObject.FindGameObjectsWithTag("blip");
         foreach (GameObject blip in blips)
             Destroy(blip);
     }
@@ -99,10 +103,11 @@ public class Radar : MonoBehaviour
  
     private void DrawBlip(Vector2 pos, GameObject blipPrefab) {
         GameObject blip = (GameObject) Instantiate(blipPrefab);
+        // Debug.Log("Blip!");
         blip.transform.SetParent(transform);
         RectTransform rt = blip.GetComponent<RectTransform>();
         rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left,pos.x, blipWidth);
         rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top,pos.y, blipHeight);
-        blips.Add(blip);
+        // blips.Add(blip);
     }
 }

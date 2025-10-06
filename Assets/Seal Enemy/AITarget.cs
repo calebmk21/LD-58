@@ -57,27 +57,28 @@ public class AITarget : MonoBehaviour
 
             currentLaunchCountdown -= Time.deltaTime;
             Debug.Log(currentLaunchCountdown);
-            
-            // GameManager.Instance.bgm.Pause();
+
+            GameManager.Instance.bgm.volume = 0.3f;
             // GameManager.Instance.sealAudio.volume = 1f;
 
             // GameManager.Instance.sealAudio.Play();
             
             
-            // if (GameManager.Instance.calvinFuckingLosesIt && !alreadyPlaying)
+            // if (GameManager.Instance.calvinFuckingLosesIt)
             // {
-            //     //GameManager.Instance.bgm.clip = GameManager.Instance.sealButFromBrooklyn;
-            //     GameManager.Instance.sealAudio.PlayOneShot(GameManager.Instance.sealButFromBrooklyn, 0.3f);
-            //     alreadyPlaying = true;
+            //     GameManager.Instance.bgm.clip = GameManager.Instance.sealButFromBrooklyn;
+            //     // GameManager.Instance.bgm.PlayOneShot(GameManager.Instance.sealButFromBrooklyn, 0.3f);
+            //     // alreadyPlaying = true;
             //
             // }
-            // else if (GameManager.Instance.calvinFuckingLosesIt == false && !alreadyPlaying)
+            // else if (GameManager.Instance.calvinFuckingLosesIt == false)
             // {
-            //     //GameManager.Instance.bgm.clip = GameManager.Instance.seal;
-            //     GameManager.Instance.sealAudio.PlayOneShot(GameManager.Instance.seal, 0.3f);
-            //     alreadyPlaying = true;
+            //     GameManager.Instance.bgm.clip = GameManager.Instance.seal;
+            //     // GameManager.Instance.bgm.PlayOneShot(GameManager.Instance.seal, 0.3f);
+            //     // alreadyPlaying = true;
             // }
-            // GameManager.Instance.sealAudio.volume = 0.5f;
+            
+            // GameManager.Instance.bgm.volume = 0.5f;
             // GameManager.Instance.bgm.Play();
             
             if (currentLaunchCountdown <= 0)

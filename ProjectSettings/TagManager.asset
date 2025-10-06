@@ -13,6 +13,7 @@ TagManager:
   - Camp
   - Warmth
   - Tent
+  - blip
   layers:
   - Default
   - TransparentFX

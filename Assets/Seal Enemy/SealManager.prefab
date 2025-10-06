@@ -549,6 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SplashSound
   audioSource: {fileID: 8676672918278041093}
   splashClip: {fileID: 8300000, guid: 1bf56869552ea4fe486da8772c1bb07a, type: 3}
+  sealAudioSource: {fileID: 0}
 --- !u!1 &2497545727443581739
 GameObject:
   m_ObjectHideFlags: 0
