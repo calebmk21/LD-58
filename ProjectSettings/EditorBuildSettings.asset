@@ -5,9 +5,39 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 58ab9f5c441bd054aa856295c96c2339
+  - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: 747bf573ab079804bb148af959067b2a
+  - enabled: 1
+    path: Assets/Scenes/TerrainScene.unity
+    guid: bdfae6dcf011f4334b852aeef6d3a53a
+  - enabled: 1
+    path: Assets/Scenes/Ending Scenes/ConferenceEnding.unity
+    guid: acff9ced609f22a49919a2c44f46a6b4
+  - enabled: 1
+    path: Assets/Scenes/Ending Scenes/CowardEnding.unity
+    guid: 15f8b9091f04d484fa5de3d26868d468
+  - enabled: 1
+    path: Assets/Scenes/Ending Scenes/DetectiveEnding.unity
+    guid: 62c49c4189f750c4db9b6d22e24946bc
+  - enabled: 1
+    path: Assets/Scenes/Ending Scenes/FailsafeEnding.unity
+    guid: 7d6b03948e0c4234e9a80478d9dfad5f
+  - enabled: 1
+    path: Assets/Scenes/Ending Scenes/FrozenEnding.unity
+    guid: b93596452e274a34d9473264713128b2
+  - enabled: 1
+    path: Assets/Scenes/Ending Scenes/NeutralEnding.unity
+    guid: 91e8384570b82eb4a8d9365ae51c5a2c
+  - enabled: 1
+    path: Assets/Scenes/Ending Scenes/SealEnding.unity
+    guid: ab16225c6d568cd44a1673bebcf574ff
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

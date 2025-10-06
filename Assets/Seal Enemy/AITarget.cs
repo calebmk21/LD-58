@@ -22,6 +22,8 @@ public class AITarget : MonoBehaviour
     private bool launching = false;
     private Vector3 launchLocation;
 
+    public GameObject audioManager;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

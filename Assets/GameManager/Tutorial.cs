@@ -10,6 +10,8 @@ public class Tutorial : MonoBehaviour
     public AudioClip[] tutorialClips;
     public GameObject[] tutorialPanels;
 
+    public GameObject tutorialCanvas;
+    
     public GameObject currentPage;
     private int pageNum;
     
@@ -19,6 +21,8 @@ public class Tutorial : MonoBehaviour
         narration.clip = tutorialClips[pageNum];
         narration.Play();
         currentPage = tutorialPanels[pageNum];
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     
     // i should probably add failsafes in case you go out of bounds... nah
@@ -58,6 +62,27 @@ public class Tutorial : MonoBehaviour
         narration.Play();
         currentPage.SetActive(true);
     }
-
+    
+    public void ViewTutorialAgain()
+    {
+        Time.timeScale = 0f;
+        tutorialCanvas.SetActive(true);
+        currentPage.SetActive(false);
+        
+        pageNum = 0;
+        narration.clip = tutorialClips[pageNum];
+        narration.Play();
+        currentPage = tutorialPanels[pageNum];
+        
+    }
+    public void EndTutorial()
+    {
+        Time.timeScale = 1f; 
+        tutorialCanvas.SetActive(false);
+        currentPage.SetActive(false);
+        narration.Stop();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+    }
 
 }

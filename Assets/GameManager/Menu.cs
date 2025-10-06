@@ -26,12 +26,17 @@ public class Menu : MonoBehaviour
         Application.Quit();
     }
 
-    public void TutorialSequence()
+    public void ToggleBrooklynSealMode()
     {
-        
-        thisPanel.SetActive(false);
-        nextAudio.Play();
+        GameManager.Instance.calvinFuckingLosesIt = !GameManager.Instance.calvinFuckingLosesIt;
     }
+    
+    // public void TutorialSequence()
+    // {
+    //     
+    //     thisPanel.SetActive(false);
+    //     nextAudio.Play();
+    // }
     
     
 }

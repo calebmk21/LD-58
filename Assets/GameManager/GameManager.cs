@@ -21,10 +21,20 @@ public class GameManager : MonoBehaviour
     public int warmItems = 0, maxWarmItems = 5;
 
     public GameObject tutorialPanel;
+
+    public bool calvinFuckingLosesIt;
     
     
     //public Image freezeMeter; 
     public Slider freezeMeter;
+    
+    void Awake()
+    {
+        Instance = this;
+        route = Ending.Neutral;
+        OpeningSequence();
+    }
+    
     void Start()
     {
         currentTime = maxTimeToFreeze;
@@ -42,14 +52,14 @@ public class GameManager : MonoBehaviour
         else if (!nearWarmth)
         {
             // meter depletes slower the more warm items you have
-            freezeMeter.value -= 100 * (maxWarmItems - warmItems) * Time.deltaTime;
+            freezeMeter.value -= 4 * (maxWarmItems - warmItems) * Time.deltaTime;
         }
         // being near warmth brings your warmth meter back up
         else if (nearWarmth && !died)
         {
             if (freezeMeter.value < maxTimeToFreeze)
             {
-                freezeMeter.value += 3 * (1 + warmItems) * Time.deltaTime;
+                freezeMeter.value += 7 * (1 + warmItems) * Time.deltaTime;
             }
             else
             {
@@ -63,6 +73,9 @@ public class GameManager : MonoBehaviour
         // Tutorial sequence
         Time.timeScale = 0f;
         tutorialPanel.SetActive(true);
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     
     
@@ -97,12 +110,6 @@ public class GameManager : MonoBehaviour
                 route = Ending.Coward;
                 break;
         }
-    }
-
-    void Awake()
-    {
-        Instance = this;
-        route = Ending.Neutral;
     }
 
     public void EndingSequence()
@@ -148,7 +155,7 @@ public class GameManager : MonoBehaviour
 
         
         // Debug.Log("You died of hypothermia");
-        //SceneManager.LoadScene(endingString);
+        SceneManager.LoadScene(endingString);
 
     }
     
