@@ -15,5 +15,5 @@ MonoBehaviour:
   id: -1
   callsign: Cryo
   panelName: CryolophosaurusPanel
-  prefab: {fileID: 3804134727722489972, guid: 5db5c9f760e55424c9e1d6dceae39f92, type: 3}
-  tag: 0
+  prefab: {fileID: 8224570215068196734, guid: f6c864834fbd2c04aabd672f14979df7, type: 3}
+  tag: 2

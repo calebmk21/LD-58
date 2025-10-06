@@ -12,6 +12,7 @@ TagManager:
   - Progression
   - Camp
   - Warmth
+  - Tent
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Indicator UI
   - 
   - 
   - 

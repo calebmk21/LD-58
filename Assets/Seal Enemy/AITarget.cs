@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class AITarget : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class AITarget : MonoBehaviour
     private bool launching = false;
     private Vector3 launchLocation;
 
+    private bool alreadyPlaying;
+    
     public GameObject audioManager;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,6 +35,8 @@ public class AITarget : MonoBehaviour
 
         m_Agent.speed = defaultSpeed;
         currentLaunchCountdown = launchTimer;
+        alreadyPlaying = false;
+
     }
 
     // Update is called once per frame
@@ -52,6 +57,29 @@ public class AITarget : MonoBehaviour
 
             currentLaunchCountdown -= Time.deltaTime;
             Debug.Log(currentLaunchCountdown);
+            
+            // GameManager.Instance.bgm.Pause();
+            // GameManager.Instance.sealAudio.volume = 1f;
+
+            // GameManager.Instance.sealAudio.Play();
+            
+            
+            // if (GameManager.Instance.calvinFuckingLosesIt && !alreadyPlaying)
+            // {
+            //     //GameManager.Instance.bgm.clip = GameManager.Instance.sealButFromBrooklyn;
+            //     GameManager.Instance.sealAudio.PlayOneShot(GameManager.Instance.sealButFromBrooklyn, 0.3f);
+            //     alreadyPlaying = true;
+            //
+            // }
+            // else if (GameManager.Instance.calvinFuckingLosesIt == false && !alreadyPlaying)
+            // {
+            //     //GameManager.Instance.bgm.clip = GameManager.Instance.seal;
+            //     GameManager.Instance.sealAudio.PlayOneShot(GameManager.Instance.seal, 0.3f);
+            //     alreadyPlaying = true;
+            // }
+            // GameManager.Instance.sealAudio.volume = 0.5f;
+            // GameManager.Instance.bgm.Play();
+            
             if (currentLaunchCountdown <= 0)
             {
                 Debug.Log("launching");
@@ -65,12 +93,16 @@ public class AITarget : MonoBehaviour
                 dir = dir.normalized;
                 launchLocation = Target.position + dir * 10;
 
+
+                
                 StartCoroutine(Launch());
             }
             else
             {
                 m_Animator.SetBool("Attack", false);
                 m_Agent.destination = Target.position;
+
+
             }
         }
         else
@@ -83,6 +115,11 @@ public class AITarget : MonoBehaviour
             {
                 m_Animator.SetBool("Attack", true);
             }
+            
+            //GameManager.Instance.bgm.clip = GameManager.Instance.mainMusic;
+            //GameManager.Instance.bgm.volume = 0.75f;
+            // alreadyPlaying = false;
+
         }
     }
 

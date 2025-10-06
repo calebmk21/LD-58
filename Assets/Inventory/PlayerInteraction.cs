@@ -16,7 +16,7 @@ public class PlayerInteraction : MonoBehaviour
     
     public bool canInteract, isTriggerAnItem;
     public GameObject currentInteractable;
-    
+    public LookAtPlayer cameraParent;
     
     void Awake()
     {
@@ -50,12 +50,14 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("In range of Interactable object");
             canInteract = true;
             currentInteractable = other.gameObject;
+            // other.gameObject.GetComponent<>()
         }
         else if (other.gameObject.CompareTag("Item"))
         {
             Debug.Log("In range of Item");
             isTriggerAnItem = true;
             currentInteractable = other.gameObject;
+            GameManager.Instance.indicationMarker.sprite = GameManager.Instance.itemInRange;
         }
         else if (other.gameObject.CompareTag("Warmth"))
         {
@@ -64,9 +66,14 @@ public class PlayerInteraction : MonoBehaviour
             GameManager.Instance.bgm.Pause();
             GameManager.Instance.bgm.clip = GameManager.Instance.campsite;
             GameManager.Instance.bgm.Play();
+            GameManager.Instance.indicationMarker.sprite = GameManager.Instance.emptyIndicator;
+        }
+        else if (other.gameObject.CompareTag("Tent"))
+        {
+            Debug.Log("In tent");
+            cameraParent.inTent = true;
             
         }
-        
     }
 
     public void OnTriggerExit(Collider other)
@@ -82,6 +89,7 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Leaving range of Item");
             isTriggerAnItem = false;
             currentInteractable = null;
+            GameManager.Instance.indicationMarker.sprite = GameManager.Instance.inTheCold;
         }
         else if (other.gameObject.CompareTag("Warmth"))
         {
@@ -90,6 +98,13 @@ public class PlayerInteraction : MonoBehaviour
             GameManager.Instance.bgm.Pause();
             GameManager.Instance.bgm.clip = GameManager.Instance.mainMusic;
             GameManager.Instance.bgm.Play();
+            GameManager.Instance.indicationMarker.sprite = GameManager.Instance.inTheCold;
+        }
+        else if (other.gameObject.CompareTag("Tent"))
+        {
+            Debug.Log("Leaving tent");
+            cameraParent.inTent = false;
+            
         }
     }
     

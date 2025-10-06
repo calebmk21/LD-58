@@ -1,4 +1,5 @@
 using System.Transactions;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tutorial : MonoBehaviour
@@ -21,9 +22,6 @@ public class Tutorial : MonoBehaviour
         narration.clip = tutorialClips[pageNum];
         narration.Play();
         currentPage = tutorialPanels[pageNum];
-        
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
     
     // i should probably add failsafes in case you go out of bounds... nah
@@ -74,6 +72,7 @@ public class Tutorial : MonoBehaviour
         narration.clip = tutorialClips[pageNum];
         narration.Play();
         currentPage = tutorialPanels[pageNum];
+        currentPage.SetActive(true);
         
     }
     public void EndTutorial()
@@ -86,6 +85,7 @@ public class Tutorial : MonoBehaviour
         Cursor.visible = false;
         
         GameManager.Instance.bgm.Play();
+        GameManager.Instance.journalUI.gameObject.SetActive(false);
     }
 
 }

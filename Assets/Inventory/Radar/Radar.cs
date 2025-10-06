@@ -10,8 +10,8 @@ public class Radar : MonoBehaviour
     public float radarDistance = 25, blipSize = 15;
     public bool usePlayerDirection = true;
     public Transform player;
-    public GameObject blipPrefab, campBlipPrefab;
-    public string blipTag = "Item", campBlip = "Camp";
+    public GameObject blipPrefab;//, campBlipPrefab;
+    public string blipTag = "Item";//, campBlip = "Camp";
 
     //public GameObject[] targets;
     private float radarWidth, radarHeight, blipWidth, blipHeight;

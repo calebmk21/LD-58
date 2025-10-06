@@ -12,13 +12,15 @@ public class InputHandler : MonoBehaviour
     public bool inRangeOfItem = false;
 
     public Journal journal;
-
+    public PauseMenu pauseMenu;
+    
     [SerializeField] private Animator animator;
 
     public Vector2 looking;
     
     // Input Actions initialized to be assigned at Start
-    private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction, _interactAction, _journalAction;
+    private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction, _interactAction, _journalAction, _pauseAction;
+
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,11 +32,13 @@ public class InputHandler : MonoBehaviour
         _sprintAction = InputSystem.actions.FindAction("Sprint");
         _interactAction = InputSystem.actions.FindAction("Interact");
         _journalAction = InputSystem.actions.FindAction("Journal");
+        _pauseAction = InputSystem.actions.FindAction("Pause");
 
-        _jumpAction.performed += OnJumpPerformed;
-        _sprintAction.performed += OnSprintPerformed;
+        // _jumpAction.performed += OnJumpPerformed;
+        // _sprintAction.performed += OnSprintPerformed;
         _interactAction.performed += OnInteractPerformed;
         _journalAction.performed += OnJournalPerformed;
+        _pauseAction.performed += OnPausePerformed;
         
         Cursor.visible = false;
     }
@@ -94,5 +98,12 @@ public class InputHandler : MonoBehaviour
     {
         journal.UseJournal();
     }
+
+    private void OnPausePerformed(InputAction.CallbackContext context)
+    {
+        pauseMenu.PauseGame();
+    }
+    
+    
 
 }

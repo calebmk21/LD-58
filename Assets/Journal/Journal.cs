@@ -14,14 +14,17 @@ public class Journal : MonoBehaviour
     public int maxTrinkets, maxTools;
 
     public JournalUI journalUI;
-
+    public AudioSource sfx;
+    public AudioClip journalOpen;
+    //public AudioClip pageTurn;
+    
     private bool isJournalOpen = false;
     // public InputAction ;
 
-    // void Start()
-    // {
-    //     
-    // }
+    void Start()
+    {
+        sfx.clip = journalOpen;
+    }
 
     public void UseJournal()
     {
@@ -33,6 +36,7 @@ public class Journal : MonoBehaviour
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            sfx.Play();
         }
         else
         {

@@ -29,22 +29,35 @@ public class GameManager : MonoBehaviour
     public AudioSource bgm;
     public AudioSource sfx;
 
+    // public AudioSource sealAudio;
+    
     public AudioClip mainMusic;
     public AudioClip seal;
     public AudioClip sealButFromBrooklyn;
     public AudioClip campsite;
+
+    public JournalUI journalUI;
+
+    public bool isSealChasing;
+    
+    //public AudioClip pageturn;
     
     public Sprite itemInRange;
-    public Sprite uhOh;
+    public Sprite inTheCold;
     public Sprite ouch;
-    public Sprite currentSprite;
+    public Sprite canAnalyze;
+    public Sprite leavingTime;
+    //public Sprite currentSprite;
+    public Sprite emptyIndicator;
+    
+    public Image indicationMarker;
     
     void Awake()
     {
         Instance = this;
         route = Ending.Neutral;
 
-        currentSprite = null;
+        //currentSprite = null;
         
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -57,6 +70,12 @@ public class GameManager : MonoBehaviour
         currentTime = maxTimeToFreeze;
         freezeMeter.value = maxTimeToFreeze;
         bgm.clip = mainMusic;
+        bgm.loop = true;
+        
+        // can comment this out if journal is already active in hierarchy (preferable) 
+        journalUI.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void Update()
@@ -71,9 +90,6 @@ public class GameManager : MonoBehaviour
         {
             // meter depletes slower the more warm items you have
             freezeMeter.value -= 4 * (maxWarmItems - warmItems) * Time.deltaTime;
-            
-            
-            
         }
         // being near warmth brings your warmth meter back up
         else if (nearWarmth && !died)
@@ -81,7 +97,7 @@ public class GameManager : MonoBehaviour
            
             if (freezeMeter.value < maxTimeToFreeze)
             {
-                freezeMeter.value += 7 * (1 + warmItems) * Time.deltaTime;
+                freezeMeter.value += 10 * (1 + warmItems) * Time.deltaTime;
             }
             else
             {

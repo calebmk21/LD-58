@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+// using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
@@ -16,6 +17,9 @@ public class Backpack : MonoBehaviour
     // [SerializeField] 
     // private GameObject itemInWorld;
 
+    public AudioClip itemGet;
+    public AudioSource sfx;
+    
     [Header("Upgrades")] 
     [SerializeField] 
     private int maxCapacity = 1;
@@ -34,7 +38,7 @@ public class Backpack : MonoBehaviour
     
     private void Awake()
     {
-
+        sfx.clip = itemGet;
     }
     
     void Update()
@@ -61,6 +65,10 @@ public class Backpack : MonoBehaviour
         itemList.Add(item);
         currentlyCarrying += 1;
         Debug.Log("Collected Item ID: " + item.id);
+
+        GameManager.Instance.indicationMarker.sprite = GameManager.Instance.inTheCold;
+        
+        sfx.Play();
     }
 
     public void BetterBackpackAcquired()
