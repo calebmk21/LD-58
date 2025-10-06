@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 1
   callsign: radar
   panelName: RadarPanel
-  prefab: {fileID: 7801595033562359281, guid: 99f1072268066ac4ca8cd285bdbf5868, type: 3}
+  prefab: {fileID: 2914436703580737484, guid: d2500d26bd596004b8ff18566b747222, type: 3}
   tag: 1

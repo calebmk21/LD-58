@@ -17,6 +17,7 @@ public class PlayerInteraction : MonoBehaviour
     public bool canInteract, isTriggerAnItem;
     public GameObject currentInteractable;
     
+    
     void Awake()
     {
         // _controller = GetComponent<PlayerController>();
@@ -60,6 +61,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             GameManager.Instance.nearWarmth = true;
             Debug.Log("Mmmm warm....");
+            GameManager.Instance.bgm.Pause();
+            GameManager.Instance.bgm.clip = GameManager.Instance.campsite;
+            GameManager.Instance.bgm.Play();
+            
         }
         
     }
@@ -82,6 +87,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             GameManager.Instance.nearWarmth = false;
             Debug.Log("Leaving Warmth");
+            GameManager.Instance.bgm.Pause();
+            GameManager.Instance.bgm.clip = GameManager.Instance.mainMusic;
+            GameManager.Instance.bgm.Play();
         }
     }
     

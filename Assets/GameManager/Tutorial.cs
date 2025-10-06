@@ -84,6 +84,8 @@ public class Tutorial : MonoBehaviour
         narration.Stop();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+        
+        GameManager.Instance.bgm.Play();
     }
 
 }

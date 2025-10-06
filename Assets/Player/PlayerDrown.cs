@@ -29,6 +29,9 @@ public class PlayerDrown : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         Debug.Log("Drowned in water");
-        // TODO: Player dies
+
+        GameManager.Instance.died = true;
+        GameManager.Instance.diedOfHypothermia = true;
+        GameManager.Instance.EndingSequence();
     }
 }

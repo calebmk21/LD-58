@@ -24,14 +24,27 @@ public class GameManager : MonoBehaviour
 
     public bool calvinFuckingLosesIt;
     
-    
-    //public Image freezeMeter; 
     public Slider freezeMeter;
+    
+    public AudioSource bgm;
+    public AudioSource sfx;
+
+    public AudioClip mainMusic;
+    public AudioClip seal;
+    public AudioClip sealButFromBrooklyn;
+    public AudioClip campsite;
+    
+    public Sprite itemInRange;
+    public Sprite uhOh;
+    public Sprite ouch;
+    public Sprite currentSprite;
     
     void Awake()
     {
         Instance = this;
         route = Ending.Neutral;
+
+        currentSprite = null;
         
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -43,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         currentTime = maxTimeToFreeze;
         freezeMeter.value = maxTimeToFreeze;
+        bgm.clip = mainMusic;
     }
 
     void Update()
@@ -57,10 +71,14 @@ public class GameManager : MonoBehaviour
         {
             // meter depletes slower the more warm items you have
             freezeMeter.value -= 4 * (maxWarmItems - warmItems) * Time.deltaTime;
+            
+            
+            
         }
         // being near warmth brings your warmth meter back up
         else if (nearWarmth && !died)
         {
+           
             if (freezeMeter.value < maxTimeToFreeze)
             {
                 freezeMeter.value += 7 * (1 + warmItems) * Time.deltaTime;
