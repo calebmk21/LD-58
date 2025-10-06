@@ -14,6 +14,8 @@ public class InputHandler : MonoBehaviour
     public Journal journal;
 
     [SerializeField] private Animator animator;
+
+    public Vector2 looking;
     
     // Input Actions initialized to be assigned at Start
     private InputAction _moveAction, _lookAction, _jumpAction, _sprintAction, _interactAction, _journalAction;
@@ -48,8 +50,8 @@ public class InputHandler : MonoBehaviour
         controller.Move(CharacterMovement);
 
         Vector2 SightlineVector = _lookAction.ReadValue<Vector2>();
+        looking = SightlineVector;
         controller.Look(SightlineVector);
-        
     }
 
     private void OnCollisionEnter(Collision other)

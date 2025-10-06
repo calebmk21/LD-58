@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     
     // interactions
     public bool isSprinting = false, isGrounded = true;
+
+    [SerializeField] private GameObject mainCamera;
     
     void Start()
     {
@@ -23,8 +25,14 @@ public class PlayerController : MonoBehaviour
 
     public void Move(Vector2 movement)
     {
-        Vector3 move = transform.forward * movement.y + transform.right * movement.x;
+        Vector3 tempMainCameraEuler = mainCamera.transform.eulerAngles;
+        mainCamera.transform.eulerAngles = new Vector3(0, mainCamera.transform.eulerAngles.y, mainCamera.transform.eulerAngles.z);
+
+        Vector3 move = mainCamera.transform.forward * movement.y + mainCamera.transform.right * movement.x;
         move *= moveSpeed * Time.deltaTime;
+        Quaternion targetRotation = move == Vector3.zero ? transform.rotation : Quaternion.LookRotation(move.normalized, Vector3.up);
+        transform.rotation = targetRotation;
+        mainCamera.transform.eulerAngles = tempMainCameraEuler;
         _controller.Move(move);
 
         verticalVelocity += gravityForce * Time.deltaTime;
@@ -52,7 +60,7 @@ public class PlayerController : MonoBehaviour
     public void Look(Vector2 looking)
     {
         rotY += looking.x * lookSpeed * Time.deltaTime;
-        transform.localRotation = Quaternion.Euler(0, rotY, 0);
+        // transform.localRotation = Quaternion.Euler(0, rotY, 0);
     }
 
     public void Jump()
