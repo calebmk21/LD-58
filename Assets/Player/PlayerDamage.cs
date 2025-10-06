@@ -51,7 +51,9 @@ public class PlayerDamage : MonoBehaviour
             }
             else if (sealHitsLeft == 0)
             {
-                // TODO: Player dies
+                GameManager.Instance.died = true;
+                GameManager.Instance.diedToSeal = true;
+                GameManager.Instance.EndingSequence();
             }
         }
     }

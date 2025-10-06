@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         route = Ending.Neutral;
+        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        
         OpeningSequence();
     }
     

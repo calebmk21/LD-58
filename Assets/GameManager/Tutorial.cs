@@ -21,6 +21,7 @@ public class Tutorial : MonoBehaviour
         narration.clip = tutorialClips[pageNum];
         narration.Play();
         currentPage = tutorialPanels[pageNum];
+        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
