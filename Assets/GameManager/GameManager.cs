@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
            
             if (freezeMeter.value < maxTimeToFreeze)
             {
-                freezeMeter.value += 10 * (1 + warmItems) * Time.deltaTime;
+                freezeMeter.value += 80 * (1 + warmItems) * Time.deltaTime;
             }
             else
             {
