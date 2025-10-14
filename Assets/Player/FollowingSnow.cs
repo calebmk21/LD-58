@@ -14,7 +14,7 @@ public class FollowingSnow : MonoBehaviour
     void Update()
     {
         Vector3 newPosition = player.position;
-        newPosition.y += 14f;
+        newPosition.y += 13f;
         transform.position = newPosition;
     }
 }
