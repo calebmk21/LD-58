@@ -26,7 +26,8 @@ public class Workstation : MonoBehaviour, IInteractable
     {
         if (inventory.currentlyCarrying > 0)
         {
-            for (int i = 0; i < inventory.currentlyCarrying; i++)
+            var totalItems = inventory.currentlyCarrying;
+                for (int i = 0; i < totalItems; i++)
             {
                 journal.AddItemToJournal(inventory.itemList[i]);
                 if (inventory.itemList[i].callsign == "backpack")
