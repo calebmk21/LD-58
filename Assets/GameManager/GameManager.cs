@@ -31,8 +31,6 @@ public class GameManager : MonoBehaviour
 
     public AITarget AITarget;
     
-    //public AudioSource bgm;
-    //Calvin's edits
     public AudioSource bgm_exploration, bgm_campsite, bgm_chase;
 
     public AudioSource sfx;
@@ -50,9 +48,11 @@ public class GameManager : MonoBehaviour
     public JournalUI journalUI;
 
     public bool isSealChasing;
-    
+
+    public AudioClip[] Seal_Slurs;
+
     //public AudioClip pageturn;
-    
+
     public Sprite itemInRange;
     public Sprite inTheCold;
     public Sprite ouch;
@@ -308,5 +308,22 @@ public class GameManager : MonoBehaviour
             percentage += Time.deltaTime / transitionTime;
             yield return null;
         }
+    }
+    
+    public void InvokeBrooklyn()
+    {
+        InvokeRepeating("BrooklynSeal", 0f, 3f);
+    }
+
+    public void BrooklynSeal()
+    {
+        int randomIndex = UnityEngine.Random.Range(0, Seal_Slurs.Length);
+        sealAudio.clip = Seal_Slurs[randomIndex];
+        sealAudio.Play();
+        print("That seal needs to watch his mouth.");
+    }
+    public void StopInvokeBrooklyn()
+    {
+        CancelInvoke();
     }
 }

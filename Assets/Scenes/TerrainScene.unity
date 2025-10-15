@@ -5170,6 +5170,74 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &489246241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8165946227109694942, guid: 169e86abada324ceaaee8018173ab5be, type: 3}
+  m_PrefabInstance: {fileID: 1951504463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &489246245
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489246241}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.826274, y: 9.258001, z: 2.210586}
+  m_Center: {x: 0.06518006, y: 4.3994007, z: -6.2051897}
+--- !u!65 &489246246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489246241}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5325545, y: 9.258001, z: 12.920088}
+  m_Center: {x: 6.209447, y: 4.3994007, z: 0.15636587}
+--- !u!65 &489246247
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489246241}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.4453739, y: 9.258001, z: 12.607356}
+  m_Center: {x: -6.18443, y: 4.3994007, z: -2.5800773e-14}
 --- !u!1 &498902542
 GameObject:
   m_ObjectHideFlags: 0
@@ -12382,17 +12450,37 @@ MonoBehaviour:
   calvinFuckingLosesIt: 0
   isWarm: 0
   freezeMeter: {fileID: 458455355}
+  AITarget: {fileID: 0}
   bgm_exploration: {fileID: 1040536446}
   bgm_campsite: {fileID: 1335473322}
   bgm_chase: {fileID: 91623631}
   sfx: {fileID: 690638538}
-  sealAudio: {fileID: 0}
+  sealAudio: {fileID: 1703826851}
   mainMusic: {fileID: 8300000, guid: 95d6b4de03c6f9f4bbf75fc92c095e57, type: 3}
   seal: {fileID: 8300000, guid: af612015c9f70e44fab5aef10960cc4f, type: 3}
   sealButFromBrooklyn: {fileID: 8300000, guid: 3d8f2609923c39845ac1cadb66ccaee1, type: 3}
   campsite: {fileID: 8300000, guid: 9dfe4e1a48d9f8345b590bd30fa8920e, type: 3}
   journalUI: {fileID: 1651380065}
   isSealChasing: 0
+  Seal_Slurs:
+  - {fileID: 8300000, guid: c0c1ca9d583263e4482eb87404edb46e, type: 3}
+  - {fileID: 8300000, guid: b1950ba660031594e901dd4394ed39e0, type: 3}
+  - {fileID: 8300000, guid: 182ca058af880c347afb83e0e3f7bbf7, type: 3}
+  - {fileID: 8300000, guid: b91d0194fabbe89479022fbfcb72c7c0, type: 3}
+  - {fileID: 8300000, guid: 1be2f2a8646e84446b1ba6540107305b, type: 3}
+  - {fileID: 8300000, guid: 960154c8cdd683241a61ad3bc3e5bcff, type: 3}
+  - {fileID: 8300000, guid: eeb1b04895243144e909a8ba0c551834, type: 3}
+  - {fileID: 8300000, guid: 857650cb17e400a41a9a515f1f00f5c2, type: 3}
+  - {fileID: 8300000, guid: 9552643ce5e68ae43b678c98e7647142, type: 3}
+  - {fileID: 8300000, guid: 3eee08b9e7315f54694b55c1999edfc6, type: 3}
+  - {fileID: 8300000, guid: 80d9561f2efad59448057775601a01fb, type: 3}
+  - {fileID: 8300000, guid: 89bf1e6ba96da3944aec323d47973e33, type: 3}
+  - {fileID: 8300000, guid: 148bb85ca89528e4891d3b0f6aee36b6, type: 3}
+  - {fileID: 8300000, guid: 1496cf9f1fe0a6546ae3afdfe4c421b9, type: 3}
+  - {fileID: 8300000, guid: 7bed5d8474e90e24c95ba80f262ec90a, type: 3}
+  - {fileID: 8300000, guid: e4c70f593b2eb684c95486ae1ee21a54, type: 3}
+  - {fileID: 8300000, guid: eecb865afedf30049bcc74b07ed59660, type: 3}
+  - {fileID: 8300000, guid: 703ab8cc75a434b4caea983e1ec9d9c6, type: 3}
   itemInRange: {fileID: 21300000, guid: ff6efd0a70c43a142abcb857ccf6e36d, type: 3}
   inTheCold: {fileID: 21300000, guid: 2661a3c4fdaffab478d7854f0757e52e, type: 3}
   ouch: {fileID: 21300000, guid: 172d6793f4b1e704eb978a9309ae95ec, type: 3}
@@ -21548,8 +21636,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 89bf1e6ba96da3944aec323d47973e33, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
@@ -23141,7 +23229,16 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 169e86abada324ceaaee8018173ab5be, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1099822293}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8165946227109694942, guid: 169e86abada324ceaaee8018173ab5be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 489246246}
+    - targetCorrespondingSourceObject: {fileID: 8165946227109694942, guid: 169e86abada324ceaaee8018173ab5be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 489246245}
+    - targetCorrespondingSourceObject: {fileID: 8165946227109694942, guid: 169e86abada324ceaaee8018173ab5be, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 489246247}
   m_SourcePrefab: {fileID: 100100000, guid: 169e86abada324ceaaee8018173ab5be, type: 3}
 --- !u!1 &1955668872
 GameObject:

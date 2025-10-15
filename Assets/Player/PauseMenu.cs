@@ -53,6 +53,7 @@ public class PauseMenu : MonoBehaviour
     public void ToggleBrooklynSealMode()
     {
         GameManager.Instance.calvinFuckingLosesIt = !GameManager.Instance.calvinFuckingLosesIt;
+        print(GameManager.Instance.calvinFuckingLosesIt);
     }
 
     public void UpdateVolume(Slider slider)

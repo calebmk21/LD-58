@@ -64,6 +64,12 @@ public class AITarget : MonoBehaviour
                 GameManager.Instance.SealAttackMusic();
                 alreadyPlaying = true;
                 GameManager.Instance.isSealChasing = true;
+
+                if (GameManager.Instance.calvinFuckingLosesIt == true)
+                {
+                    GameManager.Instance.InvokeBrooklyn();
+                    print("That seal is from New York!");
+                }
             }
 
             //GameManager.Instance.bgm.volume = 0.3f;
@@ -120,6 +126,7 @@ public class AITarget : MonoBehaviour
             {
                 GameManager.Instance.SealAttackFadeOut();
                 GameManager.Instance.isSealChasing = false;
+                GameManager.Instance.StopInvokeBrooklyn();
             }
             alreadyPlaying = false;
 
