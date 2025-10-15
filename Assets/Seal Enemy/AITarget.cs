@@ -1,7 +1,8 @@
-using UnityEngine;
-using UnityEngine.AI;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class AITarget : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class AITarget : MonoBehaviour
     private bool launching = false;
     private Vector3 launchLocation;
 
-    private bool alreadyPlaying;
+    public bool alreadyPlaying;
     
     public GameObject audioManager;
     
@@ -58,12 +59,19 @@ public class AITarget : MonoBehaviour
             currentLaunchCountdown -= Time.deltaTime;
             Debug.Log(currentLaunchCountdown);
 
-            GameManager.Instance.bgm.volume = 0.3f;
+            if (alreadyPlaying == false)
+            {
+                GameManager.Instance.SealAttackMusic();
+                alreadyPlaying = true;
+                GameManager.Instance.isSealChasing = true;
+            }
+
+            //GameManager.Instance.bgm.volume = 0.3f;
             // GameManager.Instance.sealAudio.volume = 1f;
 
             // GameManager.Instance.sealAudio.Play();
-            
-            
+
+
             // if (GameManager.Instance.calvinFuckingLosesIt)
             // {
             //     GameManager.Instance.bgm.clip = GameManager.Instance.sealButFromBrooklyn;
@@ -77,10 +85,10 @@ public class AITarget : MonoBehaviour
             //     // GameManager.Instance.bgm.PlayOneShot(GameManager.Instance.seal, 0.3f);
             //     // alreadyPlaying = true;
             // }
-            
+
             // GameManager.Instance.bgm.volume = 0.5f;
             // GameManager.Instance.bgm.Play();
-            
+
             if (currentLaunchCountdown <= 0)
             {
                 Debug.Log("launching");
@@ -94,16 +102,12 @@ public class AITarget : MonoBehaviour
                 dir = dir.normalized;
                 launchLocation = Target.position + dir * 10;
 
-
-                
                 StartCoroutine(Launch());
             }
             else
             {
                 m_Animator.SetBool("Attack", false);
                 m_Agent.destination = Target.position;
-
-
             }
         }
         else
@@ -112,15 +116,22 @@ public class AITarget : MonoBehaviour
             m_Animator.SetBool("Attack", false);
             m_Agent.destination = WaterHole.position;
 
+            if (alreadyPlaying == true)
+            {
+                GameManager.Instance.SealAttackFadeOut();
+                GameManager.Instance.isSealChasing = false;
+            }
+            alreadyPlaying = false;
+
             if (Vector3.Distance(m_Agent.transform.position, WaterHole.position) <= 2f)
             {
                 m_Animator.SetBool("Attack", true);
+
             }
-            
+
             //GameManager.Instance.bgm.clip = GameManager.Instance.mainMusic;
             //GameManager.Instance.bgm.volume = 0.75f;
             // alreadyPlaying = false;
-
         }
     }
 

@@ -63,9 +63,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             GameManager.Instance.nearWarmth = true;
             Debug.Log("Mmmm warm....");
-            GameManager.Instance.bgm.Pause();
-            GameManager.Instance.bgm.clip = GameManager.Instance.campsite;
-            GameManager.Instance.bgm.Play();
+            GameManager.Instance.isWarm = true;
+            //GameManager.Instance.bgm.Pause();
+            GameManager.Instance.ChangeMusic();
+            //GameManager.Instance.bgm.clip = GameManager.Instance.campsite;
+            //GameManager.Instance.bgm.Play();
+
             GameManager.Instance.indicationMarker.sprite = GameManager.Instance.emptyIndicator;
         }
         else if (other.gameObject.CompareTag("Tent"))
@@ -95,9 +98,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             GameManager.Instance.nearWarmth = false;
             Debug.Log("Leaving Warmth");
-            GameManager.Instance.bgm.Pause();
-            GameManager.Instance.bgm.clip = GameManager.Instance.mainMusic;
-            GameManager.Instance.bgm.Play();
+            GameManager.Instance.isWarm = false;
+            //GameManager.Instance.bgm.Pause();
+            GameManager.Instance.ChangeMusic();
+            //GameManager.Instance.bgm.clip = GameManager.Instance.mainMusic;
+            //GameManager.Instance.bgm.Play();
+            
             GameManager.Instance.indicationMarker.sprite = GameManager.Instance.inTheCold;
         }
         else if (other.gameObject.CompareTag("Tent"))

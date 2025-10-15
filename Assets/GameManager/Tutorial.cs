@@ -84,7 +84,7 @@ public class Tutorial : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         
-        GameManager.Instance.bgm.Play();
+        //GameManager.Instance.bgm_campsite.Play();
         GameManager.Instance.journalUI.gameObject.SetActive(false);
     }
 

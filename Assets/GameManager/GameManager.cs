@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -23,13 +24,23 @@ public class GameManager : MonoBehaviour
     public GameObject tutorialPanel;
 
     public bool calvinFuckingLosesIt;
-    
+
+    public bool isWarm;
+
     public Slider freezeMeter;
+
+    public AITarget AITarget;
     
-    public AudioSource bgm;
+    //public AudioSource bgm;
+    //Calvin's edits
+    public AudioSource bgm_exploration, bgm_campsite, bgm_chase;
+
     public AudioSource sfx;
 
-    // public AudioSource sealAudio;
+    float defaultVolume = 0.4f;
+    float transitionTime = 0.5f;
+
+    public AudioSource sealAudio;
     
     public AudioClip mainMusic;
     public AudioClip seal;
@@ -69,8 +80,8 @@ public class GameManager : MonoBehaviour
     {
         currentTime = maxTimeToFreeze;
         freezeMeter.value = maxTimeToFreeze;
-        bgm.clip = mainMusic;
-        bgm.loop = true;
+        //bgm.clip = mainMusic;
+        //bgm.loop = true;
         
         // can comment this out if journal is already active in hierarchy (preferable) 
         journalUI.gameObject.SetActive(true);
@@ -197,4 +208,105 @@ public class GameManager : MonoBehaviour
 
     }
     
+    //This is the place where I put the AudioManager stuff in because I'm stupid - Calvin
+    public void ChangeMusic()
+    {
+        if (isSealChasing == true)
+            return;
+        
+        print("this is triggering!");
+        AudioSource nowPlaying = bgm_exploration;
+        AudioSource target = bgm_campsite;
+        if (nowPlaying.isPlaying == false)
+        {
+            nowPlaying = bgm_campsite;
+            target = bgm_exploration;
+        }
+
+        StartCoroutine(MixSources(nowPlaying, target));
+        
+    }
+    public void SealAttackMusic()
+    {
+        print("OH FUCK HE'S GONNA KILL ME!");
+        AudioSource nowPlaying = bgm_exploration;
+        AudioSource target = bgm_chase;
+
+        if (nowPlaying.isPlaying == false)
+        {
+            nowPlaying = bgm_campsite;
+            target = bgm_chase;
+        }
+
+        nowPlaying.Pause();
+        target.Play();
+        nowPlaying.volume = 0f;
+        target.volume = 0.1f;
+    }
+
+    public void SealAttackFadeOut()
+    {
+        print("HE'S GOING AWAY!");
+        AudioSource nowPlaying = bgm_chase;
+        AudioSource target;
+
+        if (isWarm == true)
+        {
+            target = bgm_campsite;
+        }
+        else
+        {
+            target = bgm_exploration;
+        }
+
+        StartCoroutine(SealWinddown(nowPlaying, target));
+    }
+
+    public IEnumerator SealWinddown(AudioSource nowPlaying, AudioSource target)
+    {
+
+        float percentage = 0;
+            while (nowPlaying.volume > 0)
+            {
+                nowPlaying.volume = Mathf.Lerp(0.1f, 0, percentage);
+                percentage += Time.deltaTime / 1.25f;
+                yield return null;
+            }
+
+        nowPlaying.Stop();
+        if (target.isPlaying == false)
+            target.Play();
+        target.UnPause();
+        percentage = 0;
+
+        while (target.volume < 0.4f)
+        {
+            target.volume = Mathf.Lerp(0, 0.4f, percentage);
+            percentage += Time.deltaTime / 1.25f;
+            yield return null;
+        }
+    }
+    IEnumerator MixSources(AudioSource nowPlaying, AudioSource target)
+    {
+        float percentage = 0;
+        while (nowPlaying.volume > 0)
+        {
+            nowPlaying.volume = Mathf.Lerp(defaultVolume, 0, percentage);
+            percentage += Time.deltaTime / transitionTime;
+            yield return null;
+        }
+
+        nowPlaying.Pause();
+        if (target.isPlaying == false)
+            target.Play();
+        target.UnPause();
+        percentage = 0;
+
+        while (target.volume < defaultVolume)
+        {
+            target.volume = Mathf.Lerp(0, defaultVolume, percentage);
+            percentage += Time.deltaTime / transitionTime;
+            yield return null;
+        }
+    }
 }
