@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     public void Look(Vector2 looking)
     {
-        rotY += looking.x * lookSpeed * Time.deltaTime;
+        //rotY += looking.x * lookSpeed * Time.deltaTime;
         // transform.localRotation = Quaternion.Euler(0, rotY, 0);
     }
 

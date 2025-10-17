@@ -9,7 +9,7 @@ public class Journal : MonoBehaviour
 {
 
     public SerializedDictionary<int, Item> inventoryDictionary = new();
-    private int fossils = 0, trinkets = 0, tools = 0;
+    public int fossils = 0, trinkets = 0, tools = 0;
     public int maxFossils = 8;
     public int maxTrinkets, maxTools;
 
