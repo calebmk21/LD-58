@@ -42,8 +42,7 @@ public class InputHandler : MonoBehaviour
         
         Cursor.visible = false;
         // Should make WebGL Builds fixed. Hopefully. Je ne sais pas.
-        Cursor.lockState = CursorLockMode.Locked;
-
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Passing inputs to CharacterController object

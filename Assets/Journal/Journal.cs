@@ -41,7 +41,7 @@ public class Journal : MonoBehaviour
         else
         {
             Time.timeScale = 1f;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }

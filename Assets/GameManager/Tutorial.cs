@@ -81,7 +81,8 @@ public class Tutorial : MonoBehaviour
         tutorialCanvas.SetActive(false);
         currentPage.SetActive(false);
         narration.Stop();
-        Cursor.lockState = CursorLockMode.Confined;
+        // Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         
         //GameManager.Instance.bgm_campsite.Play();
